@@ -30,7 +30,7 @@ class Queue{
     peintQueue() {
         let str = '';
         for (let i = 0; i < this.queue.length; i++) {
-            str += this.queue[i] + '\n' 
+            str += this.queue[i] + '\n'
         }
         return str
     }
@@ -47,3 +47,5 @@ myQueue.enqueue(5)
 myQueue.enqueue(6)
 console.log(myQueue.peintQueue());
 console.log(myQueue.peek());
+
+
