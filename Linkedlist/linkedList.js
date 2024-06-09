@@ -43,3 +43,34 @@ LinkedList.prototype.addDataAtAnyGivenPoint = function (prevNode, data) {
     prevNode.next = newNode
     
 }
+
+LinkedList.prototype.Deletehead = function () {
+    if (!this.head) {
+        console.log("Head is empty");
+        return;
+    }
+    if (!this.head.next) {
+        this.head = null
+        return
+    }
+
+    this.head = this.head.next;
+}
+
+LinkedList.prototype.DeleteEnd = function () {
+    if (!this.head) {
+        console.log("Head is empty");
+        return;
+    }
+    if (!this.head.next) {
+        this.head = null
+        return
+    }
+    secondLast = this.head 
+    
+    while (secondLast.next.next) {
+        secondLast = secondLast.next
+    }
+
+    secondLast.next = null
+}
