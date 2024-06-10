@@ -16,7 +16,7 @@ LinkedList.prototype.addDataAtHead = function (data) {
     this.head = newNode
 }
 
-LinkedList.prototype.addDatainTheEnd = function (data) {
+LinkedList.prototype.addDataInTheEnd = function (data) {
     const newNode = new Node(data)
     if (!this.head) {
     this.head = newNode
@@ -67,10 +67,40 @@ LinkedList.prototype.DeleteEnd = function () {
         return
     }
     secondLast = this.head 
-    
+
     while (secondLast.next.next) {
         secondLast = secondLast.next
     }
 
     secondLast.next = null
 }
+
+LinkedList.prototype.DeleteAtAnyNode = function (key) {
+    // If the list is empty, return false
+    if (!this.head) {
+        console.log("Head is empty");
+        return false;
+    }
+
+    // If the node to delete is the head, update the head and return true
+    if (this.head.data === key) {
+        this.head = this.head.next;
+        return true;
+    }
+
+    let current = this.head;
+    while (current.next !== null) {
+        // If the next node is the one to be deleted, update the next pointer and return true
+        if (current.next.data === key) {
+            current.next = current.next.next;
+            return true;
+        }
+        current = current.next;
+    }
+
+    // If the key was not found, return false
+    console.log("Node with key " + key + " not found.");
+    return false;
+};
+
+
