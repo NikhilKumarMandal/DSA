@@ -103,4 +103,28 @@ LinkedList.prototype.DeleteAtAnyNode = function (key) {
     return false;
 };
 
+LinkedList.prototype.printList = function () {
+
+    let arr = []
+    let value = this.head;
+    while (value) {
+        arr.push(value.data)
+        value = value.next
+    }
+
+    console.log(arr.join(" -> "));
+}
+
+LinkedList.prototype.search = function (key) {
+    
+    let current = this.head
+    while (current) {
+        if (current.data === key) {
+            return true
+        }
+    }
+
+    return false
+}
+
 
