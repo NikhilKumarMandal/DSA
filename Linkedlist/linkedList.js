@@ -127,5 +127,18 @@ LinkedList.prototype.search = function (key) {
     return false
 }
 
+LinkedList.prototype.reverse = function () {
+    let current = this.head
+    next = null
+    prev = null
+    while (current) {
+        next = current.next
+        current.next = prev
+        prev = current
+        next = current
+    }
 
+    this.head = prev
+
+}
 
