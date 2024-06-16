@@ -1,144 +1,150 @@
-class Node{
-    constructor(data,next = null) {
-        this.data = data
-        this.next = next
+class Node {
+    constructor(data, next = null) {
+        this.data = data;
+        this.next = next;
     }
 }
 
 class LinkedList {
     constructor() {
-        this.head = null
-    }
-}
-
-LinkedList.prototype.addDataAtHead = function (data) {
-    const newNode = new Node(data)
-    this.head = newNode
-}
-
-LinkedList.prototype.addDataInTheEnd = function (data) {
-    const newNode = new Node(data)
-    if (!this.head) {
-    this.head = newNode
-    } 
-    
-    let last = this.head;
-    if (last.next) {
-        last = last.next   
+        this.head = null;
     }
 
-    last.next =  newNode
-
-}
-
-LinkedList.prototype.addDataAtAnyGivenPoint = function (prevNode, data) {
-    
-    if (!prevNode) {
-        console.log("PrevNode is empty");
-        return
+    addDataAtHead(data) {
+        const newNode = new Node(data);
+        newNode.next = this.head;
+        this.head = newNode;
     }
 
-    const newNode = new Node(data, prevNode.next)
-    
-    prevNode.next = newNode
-    
-}
+    addDataInTheEnd(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+            this.head = newNode;
+            return;
+        }
 
-LinkedList.prototype.Deletehead = function () {
-    if (!this.head) {
-        console.log("Head is empty");
-        return;
-    }
-    if (!this.head.next) {
-        this.head = null
-        return
-    }
+        let last = this.head;
+        while (last.next) {
+            last = last.next;
+        }
 
-    this.head = this.head.next;
-}
-
-LinkedList.prototype.DeleteEnd = function () {
-    if (!this.head) {
-        console.log("Head is empty");
-        return;
-    }
-    if (!this.head.next) {
-        this.head = null
-        return
-    }
-    secondLast = this.head 
-
-    while (secondLast.next.next) {
-        secondLast = secondLast.next
+        last.next = newNode;
     }
 
-    secondLast.next = null
-}
+    addDataAtAnyGivenPoint(prevNode, data) {
+        if (!prevNode) {
+            console.log("PrevNode is empty");
+            return;
+        }
 
-LinkedList.prototype.DeleteAtAnyNode = function (key) {
-    // If the list is empty, return false
-    if (!this.head) {
-        console.log("Head is empty");
+        const newNode = new Node(data, prevNode.next);
+        prevNode.next = newNode;
+    }
+
+    deleteHead() {
+        if (!this.head) {
+            console.log("Head is empty");
+            return;
+        }
+
+        this.head = this.head.next;
+    }
+
+    deleteEnd() {
+        if (!this.head) {
+            console.log("Head is empty");
+            return;
+        }
+
+        if (!this.head.next) {
+            this.head = null;
+            return;
+        }
+
+        let secondLast = this.head;
+        while (secondLast.next.next) {
+            secondLast = secondLast.next;
+        }
+
+        secondLast.next = null;
+    }
+
+    deleteAtAnyNode(key) {
+        if (!this.head) {
+            console.log("Head is empty");
+            return false;
+        }
+
+        if (this.head.data === key) {
+            this.head = this.head.next;
+            return true;
+        }
+
+        let current = this.head;
+        while (current.next !== null) {
+            if (current.next.data === key) {
+                current.next = current.next.next;
+                return true;
+            }
+            current = current.next;
+        }
+
+        console.log("Node with key " + key + " not found.");
         return false;
     }
 
-    // If the node to delete is the head, update the head and return true
-    if (this.head.data === key) {
-        this.head = this.head.next;
-        return true;
-    }
-
-    let current = this.head;
-    while (current.next !== null) {
-        // If the next node is the one to be deleted, update the next pointer and return true
-        if (current.next.data === key) {
-            current.next = current.next.next;
-            return true;
+    printList() {
+        let arr = [];
+        let value = this.head;
+        while (value) {
+            arr.push(value.data);
+            value = value.next;
         }
-        current = current.next;
+
+        console.log(arr.join(" -> "));
     }
 
-    // If the key was not found, return false
-    console.log("Node with key " + key + " not found.");
-    return false;
-};
-
-LinkedList.prototype.printList = function () {
-
-    let arr = []
-    let value = this.head;
-    while (value) {
-        arr.push(value.data)
-        value = value.next
-    }
-
-    console.log(arr.join(" -> "));
-}
-
-LinkedList.prototype.search = function (key) {
-    
-    let current = this.head
-    while (current) {
-        if (current.data === key) {
-            return true
+    search(key) {
+        let current = this.head;
+        while (current) {
+            if (current.data === key) {
+                return true;
+            }
+            current = current.next;
         }
+
+        return false;
     }
 
-    return false
-}
+    reverse() {
+        let current = this.head;
+        let next = null;
+        let prev = null;
+        while (current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
 
-LinkedList.prototype.reverse = function () {
-    let current = this.head
-    next = null
-    prev = null
-    while (current) {
-        next = current.next
-        current.next = prev
-        prev = current
-        next = current
+        this.head = prev;
     }
-
-    this.head = prev
-
 }
+
+// Example usage
+const myLinkedList = new LinkedList();
+myLinkedList.addDataAtHead(4);
+myLinkedList.addDataAtHead(5);
+myLinkedList.addDataAtHead(6);
+myLinkedList.addDataAtHead(7);
+myLinkedList.addDataAtHead(8);
+
+myLinkedList.deleteEnd();
+myLinkedList.printList();  
+
+
+let node = myLinkedList.head.next; 
+myLinkedList.addDataAtAnyGivenPoint(node, 10);
+myLinkedList.printList();  
+
 

@@ -77,6 +77,54 @@ class BinarySearchTree{
             this.printTree(node.left, space);
         }
     }
+
+    inorder() {
+        let result = []
+        this.inOrder(this.root, result)
+        return result
+    }
+
+    inOrder(node, result) {
+    if (node === null) {
+        return;
+    }
+    this.inOrder(node.left, result);
+    result.push(node.key);
+    this.inOrder(node.right, result);
+    }
+
+    preorder() {
+    let result = [];
+    this.preOrder(this.root, result);
+    return result;
+    }
+
+    preOrder(node, result) {
+    if (node === null) {
+        return;
+    }
+    result.push(node.key);
+    this.preOrder(node.left, result);
+    this.preOrder(node.right, result);
+    }
+
+    postorder() {
+    let result = [];
+    this.postOrder(this.root, result);
+    return result;
+}
+
+    postOrder(node, result) {
+    if (node === null) {
+        return;
+    }
+    this.postOrder(node.left, result);
+    this.postOrder(node.right, result);
+    result.push(node.key);
+    }
+
+
+
 }
 
 const mybstTree = new BinarySearchTree()
