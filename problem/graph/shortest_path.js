@@ -32,7 +32,7 @@ function shortestPath(edges, start, dist) {
     const graph = createGraph(edges)
     const visited = new Set()
     const queue = [[start, 0]]
-    visited.add(start)
+    visited.add([start])
 
     while (queue.length > 0) {
         const [node, distance] = queue.shift()
