@@ -18,4 +18,8 @@ function minCoinsSun(amount, nums, memo = {}) {
     return memo[amount];
 }
 
+const amount = 10;
+const coins = [7, 2, 7];
+console.log(minCoinsSun(amount,coins));
+
 
