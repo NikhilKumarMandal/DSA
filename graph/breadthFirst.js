@@ -26,3 +26,24 @@ function breadthFirstIterative(graph, start) {
 }
 
 console.log(breadthFirstIterative(graph, 'a')); 
+
+
+// function breathFirst(graph, start, visited = new Set()) {
+    
+//     let queue = [start]
+//     visited.add(start)
+    
+
+//     while (queue.length > 0) {
+//         const node = queue.shift()
+//         for (const neighbour of graph[node]) {
+//             if (!visited.has(neighbour)) {
+//                 visited.add(neighbour)
+//                 queue.push(neighbour)
+//             }
+//         }
+        
+//     }
+
+//     return visited
+// }

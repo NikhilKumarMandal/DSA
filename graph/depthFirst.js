@@ -25,6 +25,24 @@ function depthFirstWithIterative(graph, start) {
     return visited
 }
 
+// function depthFirst(graph,start,visited = new Set()) {
+    
+//     const stack = [start]
+
+//     while (stack.length > 0) {
+//         const node = stack.pop()
+//         if (!visited.has(node)) {
+//             visited.add(node)
+//             for (const neighbour of graph[node]) {
+//                 if (!visited.has(neighbour)) {
+//                     stack.push(neighbour)
+//                 }
+//             }
+//         }
+//     }
+//     return visited
+// }
+
 // console.log(depthFirstWithIterative(graph, 'a'));
 
 function dfsRecursion(start, graph, visited = new Set()) {

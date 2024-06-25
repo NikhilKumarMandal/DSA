@@ -30,9 +30,7 @@ function connectGraph(graph) {
             count++
         }
     }
-
     return count
-
 }
 
 console.log(connectGraph(graph));
