@@ -1,62 +1,67 @@
-class Node{
-    constructor(data,next = null) {
-        this.data = data
-        this.next = next
+
+class Node {
+    constructor(data,address = null) {
+        this.data = data,
+        this.address = this.address
     }
 }
 
-class LinkedList {
+class LinkedList{
     constructor() {
         this.head = null
     }
 }
 
-
-LinkedList.prototype.insertAtStart = function (data) {
+LinkedList.prototype.insertAtHead = function (data) {
     const newNode = new Node(data)
     this.head = newNode
 }
 
 LinkedList.prototype.insertAtEnd = function (data) {
     const newNode = new Node(data)
-
     if (!this.head) {
         this.head = newNode
-        return
     }
+    let last = this.head
+    while (last.address) {
+        last = last.address
+    }
+    last.address = newNode
+}
 
+LinkedList.prototype.printLinkedList = function () {
+    let arr = []
     let value = this.head
-    while (value.next) {
-        value = value.next
+    while (value) {
+        arr.push(value.data)
+        value = value.address
     }
-    value.next = newNode
+    console.log(arr.join('->'));
 }
 
-LinkedList.prototype.insertAtAnyGivenPoint = function (prevNode, data) {
+LinkedList.prototype.insertAtAnyGivenPoint = function (prevNode,data) {
     if (!prevNode) {
-        return
+        console.log("Please Provide prevNode we can't work with null value");
+        return;
     }
-    const newNode = new Node(prevNode.next, data)
-    if (!this.head) {
-        return
-    }
+    const newNode = new Node(data);
+    newNode.address = prevNode.address;
+    prevNode.address = newNode;  
 
-    prevNode.next = newNode
-}
-
-LinkedList.prototype.deleteFirstNode = function () {
-    if (!this.head) {
-        return
-    }
-    
-    if (this.head.next === null) {
-        this.head = null
-        return
-    }
-
-    this.head = this.head.next    
-}
-
-LinkedList.prototype.deleteFromEnd = function () {
     
 }
+
+
+// Example Usage
+const myLinkedList = new LinkedList();
+myLinkedList.insertAtHead(5);
+myLinkedList.insertAtEnd(6)
+myLinkedList.insertAtEnd(7)
+
+let node = myLinkedList.head;
+while (node && node.data !== 5) {
+    node = node.address;
+}
+
+myLinkedList.insertAtAnyGivenPoint(node,11)
+myLinkedList.printLinkedList()

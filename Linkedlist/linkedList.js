@@ -129,6 +129,21 @@ class LinkedList {
 
         this.head = prev;
     }
+
+    // deleteMiddleNode() {
+    //     if (!this.head) {
+    //         return 
+    //     }
+
+    //     if (this.head.next === null) {
+    //         return this.head = null
+    //     }
+
+    //     for (let i = 0; i < array.length; i++) {
+    //         const element = array[i];
+            
+    //     }
+    // }
 }
 
 // Example usage
