@@ -46,22 +46,87 @@ LinkedList.prototype.insertAtAnyGivenPoint = function (prevNode,data) {
     }
     const newNode = new Node(data);
     newNode.address = prevNode.address;
-    prevNode.address = newNode;  
-
-    
+    prevNode.address = newNode;
 }
 
+
+LinkedList.prototype.deleteFirstNode = function () {
+    if (!this.head) {
+        console.log('');
+        return
+    }
+    this.head = this.head.address
+}
+
+LinkedList.prototype.deleteLastNode = function () {
+    if (!this.head) {
+        return
+    }
+    
+    if (!this.head.address) {
+        this.head = null
+    }
+
+    let secondLast = this.head
+    
+    while (secondLast.address.address) {
+        secondLast = secondLast.address
+    }
+    secondLast.address = null
+}
+
+LinkedList.prototype.deleteParticularNode = function (key) {
+    if (!this.head) {
+        return
+    }
+
+    if (this.head.data === key) {
+        this.head = this.head.address
+    }
+
+    let current = this.head
+
+    while (current.address !== null) {
+        if (current.address.data === key) {
+            current.address = current.address.address
+            return
+        }
+
+        current = current.address
+    }
+}
+
+LinkedList.prototype.reverse = function () {
+    let curr = this.head;
+    let address = null;
+    let prev = null;
+
+    while (curr) {
+        address = curr.address;
+        curr.address = prev;
+        prev = curr;
+        curr = address
+    }
+    this.head = prev;
+}
 
 // Example Usage
 const myLinkedList = new LinkedList();
 myLinkedList.insertAtHead(5);
 myLinkedList.insertAtEnd(6)
 myLinkedList.insertAtEnd(7)
+myLinkedList.insertAtEnd(8)
 
 let node = myLinkedList.head;
 while (node && node.data !== 5) {
     node = node.address;
 }
 
-myLinkedList.insertAtAnyGivenPoint(node,11)
+myLinkedList.insertAtAnyGivenPoint(node, 11)
+// myLinkedList.deleteFirstNode()
+// myLinkedList.deleteLastNode()
+// myLinkedList.deleteParticularNode(7)
+,myLinkedList.reverse()
 myLinkedList.printLinkedList()
+
+
