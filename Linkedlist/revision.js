@@ -231,3 +231,118 @@ var reverseBetween = function (head, left, right) {
 
     return dummy.next
 };
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    let length = 0;
+    let temp = head;
+    while (temp !== null) {
+        length++;
+        temp = temp.next
+    }
+    console.log('Length Of LinkedList ', length);
+
+     if (n === length) {
+        return head.next;
+    }
+    
+    let curr = head;
+    let prev = null
+    for (let i = 0; i < length - n; i++) {
+        prev = curr;
+        curr = curr.next
+    }
+
+    prev.next = curr.next;
+    return head
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var modifiedList = function (nums, head) {
+    
+   let length = 0;
+let temp = head;
+
+while (temp !== null) {
+    length++;
+    temp = temp.next;
+}
+
+console.log('Length of LinkedList ', length);
+
+for (let j = 0; j < nums.length; j++) {
+    let value = nums[j];
+    let curr = head;
+    let prev = null;
+
+    for (let i = 1; i <= length; i++) {
+        if (curr === null) break;
+
+        if (curr.val === value) {
+            if (prev === null) {
+                head = curr.next;
+            } else {
+                prev.next = curr.next;
+            }
+        } else {
+            prev = curr;
+        }
+        curr = curr.next;
+    }
+}
+
+return head;
+};
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var modifiedList = function(nums, head) {
+    let numSet = new Set(nums);
+    let dummy = new ListNode(0);
+    dummy.next = head;
+    let curr = dummy;
+
+    while (curr.next !== null) {
+        if (numSet.has(curr.next.val)) {
+            curr.next = curr.next.next;
+        } else {
+            curr = curr.next;
+        }
+    }
+
+    return dummy.next;
+};
