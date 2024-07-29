@@ -284,8 +284,8 @@ var removeNthFromEnd = function(head, n) {
  */
 var modifiedList = function (nums, head) {
     
-   let length = 0;
-let temp = head;
+    let length = 0;
+    let temp = head;
 
 while (temp !== null) {
     length++;
@@ -345,4 +345,88 @@ var modifiedList = function(nums, head) {
     }
 
     return dummy.next;
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function (head) {
+    let mySet = new Set()
+    let curr = head;
+
+    while (curr !== null) {
+        
+        if (mySet.has(curr)) {
+            return true
+        }
+
+        mySet.add(curr)
+        curr = curr.next;
+    }
+
+    return false;
+};
+
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+    
+    let mySet = new Set()
+    let curr = head;
+
+    while (curr !== null) {
+        if (mySet.has(curr)) {
+            return curr
+        }
+
+        mySet.add(curr)
+        curr = curr.next;
+    }
+
+    return null
+};
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+
+// nums = [2,7,11,15], target = 9
+// Output: [0,1]
+    
+var twoSum = function (nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] === target) {
+                return [i, j];
+            }
+        }
+    }
+
+    return [];
 };

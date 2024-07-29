@@ -11,6 +11,7 @@ class DoublyLinkedList {
         this.head = null;
         this.tail = null;
     }
+    //0, 1, 2, 3, 4
 
     insertAtStart(data) {
         const newNode = new Node(data, this.head, null);
@@ -55,6 +56,22 @@ class DoublyLinkedList {
             this.tail = newNode;
         }
     }
+
+    insertAtAnyPlace1(data, nextNode) {
+    if (!this.head) {
+        return;
+    }
+
+    const newNode = new Node(data, nextNode, nextNode.prev);
+
+    if (nextNode.prev !== null) {
+        nextNode.prev.next = newNode;
+    } else {
+        this.head = newNode;
+    }
+
+    nextNode.prev = newNode;
+}
 
     deleteFirst() {
         if (!this.head) {
@@ -121,16 +138,19 @@ myDoublyLinkedList.printList();
 
 let secondNode = myDoublyLinkedList.head.next;  
 myDoublyLinkedList.insertAtAnyPlace(25, secondNode);
+
+
+myDoublyLinkedList.insertAtAnyPlace1(35,nextNode)
 myDoublyLinkedList.printList();  
 
-myDoublyLinkedList.deleteFirst();
-myDoublyLinkedList.printList();  
+// myDoublyLinkedList.deleteFirst();
+// myDoublyLinkedList.printList();  
 
-myDoublyLinkedList.deleteLast();
-myDoublyLinkedList.printList();  
+// myDoublyLinkedList.deleteLast();
+// myDoublyLinkedList.printList();  
 
-myDoublyLinkedList.reverse();
-myDoublyLinkedList.printList(); 
+// myDoublyLinkedList.reverse();
+// myDoublyLinkedList.printList(); 
 
 
 
