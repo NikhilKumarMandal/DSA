@@ -462,3 +462,96 @@ var deleteMiddle = function(head) {
     prev.next = slow.next
     return head
 };
+
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var oddEvenList = function(head) {
+    
+if(!head || !head.next){
+        return head
+    }
+
+    let currOdd = head;
+    let currEven = head.next;
+    let evenHead = head.next;
+
+    while(currOdd.next !== null && currEven.next !==null){
+        currOdd.next = currOdd.next.next;
+        currOdd = currOdd.next;
+        currEven.next = currEven.next.next;
+        currEven = currEven.next;
+    }
+
+    currOdd.next = evenHead;
+    return head;
+
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+
+    
+};
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number[]} nums
+ * @return {number}
+ */
+var numComponents = function (head, nums) {
+    let mySet = new Set(nums)
+    let curr = head;
+    let count = 0
+
+    while (curr !== null) {
+        if (!mySet.has(curr.val)) {
+            
+        }
+    }
+
+    
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
